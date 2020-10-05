@@ -1,0 +1,17 @@
+{
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		// Custom
+		"**/.gitignore": true,
+		"build": true,
+		"LICENSE": true,
+		"makefile": true,
+		"meson.build": true,
+		"README.md": true,
+	},
+	"C_Cpp.default.cppStandard": "c++17"
+}
