@@ -10,8 +10,8 @@
 		"build": true,
 		"LICENSE": true,
 		"makefile": true,
-		"meson.build": true,
+		"meson.build": false,
 		"README.md": true,
 	},
-	"C_Cpp.default.cppStandard": "c++17"
+	"C_Cpp.default.cppStandard": "c++17",
 }
