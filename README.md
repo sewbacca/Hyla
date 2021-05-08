@@ -1,2 +1,2 @@
 # Hyla
-A... nother chess engine
+Its an attempt to rewrite Lizard in a more understandable manner.
