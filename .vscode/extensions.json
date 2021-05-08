@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"matepek.vscode-catch2-test-adapter",
+		"hbenl.vscode-test-explorer",
+		"connorshea.vscode-test-explorer-status-bar",
+		"gruntfuggly.todo-tree"
+	]
+}

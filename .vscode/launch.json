@@ -5,7 +5,7 @@
 			"name": "Hyla",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/debug/Hyla",
+			"program": "${workspaceFolder}/build/Hyla-dbg.out",
 			"preLaunchTask": "build-debug",
 			"args": [],
 			"stopAtEntry": false,
@@ -14,13 +14,12 @@
 			"externalConsole": false,
 			"MIMode": "gdb",
 			"setupCommands": [
-			    {
-				"description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
-				"text": "-enable-pretty-printing",
-				"ignoreFailures": true
-			    }
+				{
+					"description": "Automatische Strukturierung und Einrückung für \"gdb\" aktivieren",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
 			]
-		}
+		},
 	],
-	"compounds": []
 }

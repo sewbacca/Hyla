@@ -1,12 +1,7 @@
 {
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.hg": true,
-		"**/CVS": true,
-		"**/.DS_Store": true,
-		"cache": true,
-		"build": true,
-	},
 	"C_Cpp.default.cppStandard": "c++17",
+	"files.exclude": {
+		".git": true,
+		".cache": true,
+	},
 }
