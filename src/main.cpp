@@ -1,7 +1,5 @@
 
-#include <iostream>
-
-#include "uci.h"
+#include "protocols/uci.h"
 
 int main()
 {
