@@ -16,7 +16,8 @@ FILE_MAIN := src/main.cpp
 
 # TODO: Make platform independant
 
-CXX := /usr/bin/g++
+CXX := /usr/bin/clang++
 SHELL := /bin/bash
 
-FLAGS := --std=c++17 -Wall -Wextra -Isrc -lpthread
+COMPILE_FLAGS := --std=c++17 -Wall -Wextra -Isrc
+LINK_FLAGS := -lpthread

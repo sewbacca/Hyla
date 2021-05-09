@@ -73,13 +73,13 @@ help:
 exec: $(FILE_MAIN_OBJ) $(FILES_OBJ)
 	echo Linking $(FILE_OUT)
 	mkdir -p $(dir $(FILE_OUT))
-	$(CXX) -o $(FILE_OUT) $^ $(FLAGS)
+	$(CXX) -o $(FILE_OUT) $^ $(LINK_FLAGS)
 	echo Successfully built executable!
 
 tests: tests/catch.hpp $(FILES_OBJ) $(FILES_TESTS_OBJ)
 	echo Linking $(FILE_TESTS_OUT)
 	mkdir -p $(dir $(FILE_TESTS_OUT))
-	$(CXX) -o $(FILE_TESTS_OUT) $^ $(FLAGS)
+	$(CXX) -o $(FILE_TESTS_OUT) $^ $(LINK_FLAGS)
 	echo Successfully built tests!
 
 clean:
@@ -90,7 +90,7 @@ clean:
 $(DIR_DEP)/%.d: %.cpp
 	echo Creating dependency graph for $^
 	mkdir -p $(dir $@)
-	$(CXX) -M $(FLAGS) $^ -o $@
+	$(CXX) -M $(COMPILE_FLAGS) $^ -o $@
 
 ifeq ($(MAKECMDGOALS), clean)
 else ifeq ($(MAKECMDGOALS), build-info)
@@ -101,7 +101,7 @@ endif
 $(DIR_OBJ)/%.o: %.cpp
 	echo Compiling $<...
 	mkdir -p $(dir $@)
-	$(CXX) $(FLAGS) -c -o $@ $<
+	$(CXX) $(COMPILE_FLAGS) -c -o $@ $<
 
 # Catch dependency download
 
