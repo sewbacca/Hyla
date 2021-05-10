@@ -14,10 +14,10 @@ include config.mk
 # Platform and config specific stuff
 
 ifeq ($(CONFIG), release)
-FLAGS += -O3 -D NDEBUG
+COMPILE_FLAGS += -O3 -D NDEBUG
 FILE_TAG :=
 else ifeq ($(CONFIG), debug)
-FLAGS += -g
+COMPILE_FLAGS += -g
 FILE_TAG := -dbg
 else
 $(error Bad $$(CONFIG) := $(CONFIG), must be release/debug)
@@ -58,7 +58,7 @@ build-info:
 	echo "    Compiler: $(CXX)"
 	echo "    Platform: $(PLATFORM)"
 	echo "    Config:   $(CONFIG)"
-	echo "    Flags:    \"$(FLAGS)\"";
+	echo "    Flags:    \"$(COMPILE_FLAGS)\"";
 
 help:
 	echo "Variables:"
@@ -73,13 +73,13 @@ help:
 exec: $(FILE_MAIN_OBJ) $(FILES_OBJ)
 	echo Linking $(FILE_OUT)
 	mkdir -p $(dir $(FILE_OUT))
-	$(CXX) -o $(FILE_OUT) $^ $(LINK_FLAGS)
+	$(CXX) -o $(FILE_OUT) $^ $(COMPILE_FLAGS) $(LINK_FLAGS)
 	echo Successfully built executable!
 
 tests: tests/catch.hpp $(FILES_OBJ) $(FILES_TESTS_OBJ)
 	echo Linking $(FILE_TESTS_OUT)
 	mkdir -p $(dir $(FILE_TESTS_OUT))
-	$(CXX) -o $(FILE_TESTS_OUT) $^ $(LINK_FLAGS)
+	$(CXX) -o $(FILE_TESTS_OUT) $^ $(COMPILE_FLAGS) $(LINK_FLAGS)
 	echo Successfully built tests!
 
 clean:
@@ -90,13 +90,17 @@ clean:
 $(DIR_DEP)/%.d: %.cpp
 	echo Creating dependency graph for $^
 	mkdir -p $(dir $@)
-	$(CXX) -M $(COMPILE_FLAGS) $^ -o $@
+	$(CXX) $(COMPILE_FLAGS) -MM -MT $(DIR_OBJ)/$*.o $^ -o $@
 
-ifeq ($(MAKECMDGOALS), clean)
-else ifeq ($(MAKECMDGOALS), build-info)
-else
--include $(FILES_H)
+ifeq ($(MAKECMDGOALS), build-info)
+FILES_H :=
 endif
+ifeq ($(MAKECMDGOALS), clean)
+FILES_H :=
+endif
+
+$(info $(FILES_H))
+-include $(FILES_H)
 
 $(DIR_OBJ)/%.o: %.cpp
 	echo Compiling $<...
